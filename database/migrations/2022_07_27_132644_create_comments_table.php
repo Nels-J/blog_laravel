@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->string('pseudo');
-            $table->string('email');
+            $table->string('pseudo')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
+            $table->foreignId('post_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained();
         });
     }
 
