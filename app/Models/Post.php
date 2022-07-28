@@ -17,4 +17,12 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    /**
+     * Get the user(authors) that owns the post.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
