@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
-use App\Models\Post;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CommentSeeder extends Seeder
@@ -16,6 +14,6 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
-        Comment::factory(50)->create();
+        Comment::factory(500)->create();
     }
 }
