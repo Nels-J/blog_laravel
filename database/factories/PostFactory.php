@@ -21,6 +21,7 @@ class PostFactory extends Factory
             'title' => fake()->sentence(),
             'content' => fake()->text(2000),
             'user_id' => User::inRandomOrder()->first(),  //query the user table to find an id to add it to the post
+            'created_at' => fake()->dateTimeBetween('-1 month'),
         ];
     }
 }
