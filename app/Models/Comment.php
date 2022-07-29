@@ -12,7 +12,7 @@ class Comment extends Model
     /**
      * Get the post that owns the comment.
      */
-    public function post()
+    public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Post::class);
     }
@@ -20,9 +20,8 @@ class Comment extends Model
     /**
      * Get the user that owns the comment.
      */
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
 }

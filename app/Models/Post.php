@@ -9,12 +9,14 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $perPage = 10;
+
     /**
      * Get the comments for the blog post.
      */
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->oldest();
     }
 
     /**
@@ -24,5 +26,4 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
-
 }
