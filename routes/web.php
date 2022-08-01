@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -16,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomeController::class)->name('home');
-
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
+Route::post('/posts/{post}', [CommentController::class, 'store'])->name('comment.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+
 
 require __DIR__.'/auth.php';
