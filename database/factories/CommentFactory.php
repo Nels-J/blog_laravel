@@ -20,7 +20,7 @@ class CommentFactory extends Factory
     {
         $commentArray = [
             'post_id' => Post::inRandomOrder()->first(),  //query the post table to find an id to add it to the comment
-            'content' => fake()->text(2000),
+            'comment' => fake()->text(2000),
             'created_at' => fake()->dateTimeBetween('-1 month'),
         ];
 
