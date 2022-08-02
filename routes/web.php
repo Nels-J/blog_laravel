@@ -23,6 +23,8 @@ Route::post('/posts/{post}', [CommentController::class, 'store'])->name('comment
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/postcreate', [DashboardController::class, 'create'])->name('postcreate');
+    Route::post('/dashboard/postcreate', [DashboardController::class, 'store'])->name('poststore');
 });
 
 require __DIR__ . '/auth.php';

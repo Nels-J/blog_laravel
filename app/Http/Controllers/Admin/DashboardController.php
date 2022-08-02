@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use function Symfony\Component\String\s;
 
 class DashboardController extends Controller
 {
@@ -26,7 +27,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.postcreate'); // returning the view with the form to create a new post
     }
 
     /**
@@ -37,7 +38,16 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+
+        $newPost = new Post;
+        $newPost->title = $request->title;
+        $newPost->content = $request->content; // fixme replace content in db content seem to be a key word
+        $newPost->user_id = $request->user()->id;
+        $newPost->save();
+
+        //Then redirect user to the all product view to see the new entry in the list
+        return redirect()->route('dashboard');
     }
 
     /**
