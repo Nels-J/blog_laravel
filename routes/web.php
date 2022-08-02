@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -20,11 +21,8 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::post('/posts/{post}', [CommentController::class, 'store'])->name('comment.store');
 
-Route::middleware(['auth','admin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
