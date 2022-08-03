@@ -38,11 +38,9 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-
         $newPost = new Post;
         $newPost->title = $request->title;
-        $newPost->content = $request->content; // fixme replace content in db content seem to be a key word
+        $newPost->article = $request->article;
         $newPost->user_id = $request->user()->id;
         $newPost->save();
 

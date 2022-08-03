@@ -28,10 +28,10 @@
 
                         <!-- Post content -->
                         <div>
-                            <x-label for="content" :value="__('Content')"/>
+                            <x-label for="article" :value="__('Content')"/>
 
-                            <x-input id="content" class="block mt-1 w-full" type="text" name="content"
-                                     :value="old('content')"
+                            <x-input id="article" class="block mt-1 w-full" type="text" name="article"
+                                     :value="old('article')"
                                      required/>
                         </div>
 
