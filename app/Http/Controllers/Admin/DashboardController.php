@@ -38,11 +38,24 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
+        //fixme #8
+        $validated = $request->validate([
+            'title' => ['required','max:255'],
+            'article' => ['required'],
+            'user_id' => ['required','exists:App\Models\User,id'],
+        ]);
+
         $newPost = new Post;
-        $newPost->title = $request->title;
-        $newPost->article = $request->article;
-        $newPost->user_id = $request->user()->id;
+        $newPost->title = $validated['title'];
+        $newPost->article = $validated['article'];
+        $newPost->user_id = $validated->user()->id;
         $newPost->save();
+
+//        $newPost = new Post;
+//        $newPost->title = $request->title;
+//        $newPost->article = $request->article;
+//        $newPost->user_id = $request->user()->id;
+//        $newPost->save();
 
         //Then redirect user to the all product view to see the new entry in the list
         return redirect()->route('dashboard');
