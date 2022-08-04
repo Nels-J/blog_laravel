@@ -21,7 +21,7 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::post('/posts/{post}', [CommentController::class, 'store'])->name('comment.store');
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/postcreate', [DashboardController::class, 'create'])->name('postcreate');
     Route::post('/dashboard/postcreate', [DashboardController::class, 'store'])->name('poststore');
