@@ -21,7 +21,7 @@
                                 </h1>
                                 <p class="text-blue-500">Crée {{ $post->created_at->diffForHumans() }}</p>
                                 <p class="text-orange-500">{{ $post->comments_count }} Commentaires</p>
-                                <p>{{ Str::limit($post->content, 50) }}</p>
+                                <p>{{ Str::limit($post->article, 50) }}</p>
                             </div>
                         </div>
                     @endforeach

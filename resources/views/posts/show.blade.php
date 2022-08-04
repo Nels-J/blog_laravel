@@ -7,7 +7,7 @@
                     <p class="text-blue-500">Crée {{ $post->created_at->diffForHumans() }}</p>
                     <p class="text-green-700">Utilisateur : {{ $post->user->name }}</p>
                     <p class="text-orange-500">{{ $post->comments_count }} Commentaires</p>
-                    <p>{{ nl2br($post->content) }}</p>
+                    <p>{{ nl2br($post->article) }}</p>
                 </div>
             </div>
         </div>
@@ -47,22 +47,22 @@
                         </div>
 
                         @guest()
-                        <!-- Pseudo -->
-                        <div class="mt-4">
-                            <x-label for="pseudo" :value="__('Pseudo')"/>
-                            <x-input id="pseudo" class="block mt-1 w-full" type="text" name="pseudo"
-                                     :value="old('pseudo')"
-                                     required
-                                     autofocus/>
-                        </div>
+                            <!-- Pseudo -->
+                            <div class="mt-4">
+                                <x-label for="pseudo" :value="__('Pseudo')"/>
+                                <x-input id="pseudo" class="block mt-1 w-full" type="text" name="pseudo"
+                                         :value="old('pseudo')"
+                                         required
+                                         autofocus/>
+                            </div>
 
-                        <!-- Email Address -->
-                        <div class="mt-4">
-                            <x-label for="email" :value="__('Email')"/>
-                            <x-input id="email" class="block mt-1 w-full" type="email" name="email"
-                                     :value="old('email')"
-                                     required/>
-                        </div>
+                            <!-- Email Address -->
+                            <div class="mt-4">
+                                <x-label for="email" :value="__('Email')"/>
+                                <x-input id="email" class="block mt-1 w-full" type="email" name="email"
+                                         :value="old('email')"
+                                         required/>
+                            </div>
                         @endguest
 
                         <div class="flex items-center justify-end mt-4">
