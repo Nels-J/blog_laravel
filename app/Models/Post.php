@@ -15,6 +15,18 @@ class Post extends Model
     protected $perPage = 10;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'article',
+        'user_id'
+    ];
+
+
+    /**
      * Get the comments for the blog post.
      */
     public function comments()

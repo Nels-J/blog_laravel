@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDashBoardPostRequest;
 use App\Models\Post;
+use Auth;
 use Illuminate\Http\Request;
-use function Symfony\Component\String\s;
 
 class DashboardController extends Controller
 {
@@ -36,28 +37,13 @@ class DashboardController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDashBoardPostRequest $request)
     {
-        //fixme #8
-        $validated = $request->validate([
-            'title' => ['required','max:255'],
-            'article' => ['required'],
-            'user_id' => ['required','exists:App\Models\User,id'],
-        ]);
+        $postToStore = $request->validated();
+        $postToStore['user_id'] = Auth::id();
 
-        $newPost = new Post;
-        $newPost->title = $validated['title'];
-        $newPost->article = $validated['article'];
-        $newPost->user_id = $validated->user()->id;
-        $newPost->save();
+        Post::create($postToStore);
 
-//        $newPost = new Post;
-//        $newPost->title = $request->title;
-//        $newPost->article = $request->article;
-//        $newPost->user_id = $request->user()->id;
-//        $newPost->save();
-
-        //Then redirect user to the all product view to see the new entry in the list
         return redirect()->route('dashboard');
     }
 
