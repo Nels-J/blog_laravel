@@ -13,6 +13,17 @@ class Comment extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'comment',
+        'post_id',
+        'user_id'
+    ];
+
+    /**
      * Get the post that owns the comment.
      */
     public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
