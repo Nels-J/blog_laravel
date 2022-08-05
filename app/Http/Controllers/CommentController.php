@@ -16,7 +16,11 @@ class CommentController extends Controller
         $commentToStore = $request->validated();
         // The 'id' input value from the $post array is affected to the 'post_id' on $commentToStore array
         $commentToStore['post_id'] = $post['id'];
-        $commentToStore['user_id'] = Auth::id();
+
+        // For user authenticated only, add the user 'id' value to the 'user_id' on $commentToStore array
+        if(Auth::user()){
+            $commentToStore['user_id'] = Auth::id();
+        }
 
         // Generate an instance of Comment and pass to it the array to set their attributes and save it on the DB
         Comment::create($commentToStore);
